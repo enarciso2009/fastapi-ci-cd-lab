@@ -29,3 +29,19 @@ jobs:
       - run: |
           sleep 5
           curl http://localhost:8000/health
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            cd fastapi-ci-cd-lab
+            docker compose down
+            docker compose up -d --build
