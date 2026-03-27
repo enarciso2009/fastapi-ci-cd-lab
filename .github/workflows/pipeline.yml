@@ -7,19 +7,25 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout codigo
-        uses: actions/checkout@v4
 
-      - name: Verificar Docker
-        run: docker --version
+      - run: echo "PASSO 1 - inicio"
 
-      - name: Build da imagem Docker
-        run: docker build -t fastapi-lab .
+      - uses: actions/checkout@v4
 
-      - name: Run container
-        run: docker run -d -p 8000:8000 fastapi-lab .
+      - run: echo "PASSO 2 - checkout ok"
 
-      - name: Testar endpoint
-        run: |
-          sleep 5 
+      - run: docker --version
+
+      - run: echo "PASSO 3 - Docker ok "
+
+      - run: docker build -t fastapi-lab .
+
+      - run: echo "PASSO 4 - build ok"
+
+      - run: docker run -d -p 8000:8000 fastapi-lab
+
+      - run: echo "PASSO 5 - Testar endpoint"
+
+      - run: |
+          sleep 5
           curl http://localhost:8000/health
