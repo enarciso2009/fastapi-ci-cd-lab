@@ -35,6 +35,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - run: echo "HOST = ${{ secrets.SSH_HOST }}"
+
       - name: Deploy via SSH
         uses: appleboy/ssh-action@v1
 
