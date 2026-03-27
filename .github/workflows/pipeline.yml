@@ -3,7 +3,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      -name: Checkout código
+      - name: Checkout codigo
       - uses: actions/checkout@v4
 
       - name: Verificar Docker
