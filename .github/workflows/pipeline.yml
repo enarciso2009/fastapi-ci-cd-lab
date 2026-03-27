@@ -1,10 +1,14 @@
+name: CI Pipeline
+
+on: push
+
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout codigo
-      - uses: actions/checkout@v4
+        uses: actions/checkout@v4
 
       - name: Verificar Docker
         run: docker --version
